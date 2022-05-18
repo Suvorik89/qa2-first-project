@@ -1,13 +1,27 @@
 package lesson2;
 
 public class Student {
-//---------Attributes--------------
+    //---------Attributes--------------
     private String firstName;
     private String lastName;
     private int age;
     private String personalCode;
+    private String course;
 
-//---------Getters/Setters---------
+    //---------Getters/Setters---------
+    public Student(
+            String firstName,
+            String lastname,
+            int age,
+            String personalCode,
+            String course
+    ) {
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.age = age;
+        this.personalCode = personalCode;
+        this.course = course;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -39,5 +53,13 @@ public class Student {
 
     public void setPersonalCode(String personalCode) {
         this.personalCode = personalCode;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 }
