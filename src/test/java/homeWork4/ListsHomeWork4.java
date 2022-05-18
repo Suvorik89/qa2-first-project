@@ -34,16 +34,25 @@ public class ListsHomeWork4 {
             }
         }
 
-        /*List<Student> students = new ArrayList<Student>();
+        List<Student> students = new ArrayList<Student>();
         students.add(0, new Student("Jekaterina", "Suvorova", 32, "180989-10032", "QA2"));
         students.add(1, new Student("Dmitrijs", "Dankovs", 45, "300177-11522", "QA1"));
         students.add(2, new Student("Tatjana", "Kosareva", 51, "110171-12345", "QA2"));
         students.add(3, new Student("Artjoms", "Suvorovs", 31, "161290-10001", "QA2"));
         students.add(4, new Student("Nikolajs", "Mihalciks", 39, "200983-12501", "QA1"));
 
-        students.forEach((v) -> System.out.println(v.getFirstName()));*/
+        System.out.println(" 3.exercise ");
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println(i + " " + students.get(i).getFirstName());
+        }
+        System.out.println(" 4.exercise ");
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getCourse().equals("QA2")) {
+                System.out.println(i + " " + students.get(i).getFirstName() + " " + students.get(i).getCourse());
+            }
+        }
 
-        Map<String, Student> students = new HashMap<String, Student>();
+        /*Map<String, Student> students = new HashMap<String, Student>();
         students.put("1", new Student("Jekaterina", "Suvorova", 32, "180989-10032", "QA2"));
         students.put("2", new Student("Dmitrijs", "Dankovs", 45, "300177-11522", "QA1"));
         students.put("3", new Student("Tatjana", "Kosareva", 51, "110171-12345", "QA2"));
@@ -55,6 +64,6 @@ public class ListsHomeWork4 {
             if (v.getCourse().equals("QA2")) {
                 System.out.println(k + " key: " + v.getFirstName() + " " + v.getCourse());
             }
-        });
+        });*/
     }
 }
