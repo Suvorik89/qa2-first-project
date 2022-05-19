@@ -9,6 +9,7 @@ import java.util.Map;
 public class ListTransports {
     Map<String, Transport> transports = new HashMap<String, Transport>();
     DecimalFormat df = new DecimalFormat("#.00");
+
     @Test
     public void allTransport() {
         transports.put("C3", new Transport("Citroen C3", 500, 155000, 8.51, 2.5));

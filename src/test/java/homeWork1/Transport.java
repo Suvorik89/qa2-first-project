@@ -51,7 +51,9 @@ public class Transport {
         this.distance = distance;
     }
 
-    public String getTransportName() { return transportName; }
+    public String getTransportName() {
+        return transportName;
+    }
 
     public void setTransportName(String transportName) {
         this.transportName = transportName;
@@ -73,7 +75,9 @@ public class Transport {
         this.fuelConsumption = fuelConsumption;
     }
 
-    public int getCargo() { return cargo; }
+    public int getCargo() {
+        return cargo;
+    }
 
     public void setCargo(int cargo) {
         this.cargo = cargo;

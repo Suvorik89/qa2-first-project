@@ -8,6 +8,6 @@ public class homeWork2 {
     private final By MAIN_SEARCH_BUTTON = By.xpath(".//div[@class = 'main-search__submit']");
     private final By FAVORITE_ITEMS_BUTTON = By.xpath(".//div[@class = 'favorite-items']");
     private final By LEFT_SUBMENU_LVL1 = By.xpath(".//ul[@class='submenu-lvl1__list']");
-    private final By CAROUSEL_SLIDER = By.xpath(".//img[@class='welcome-carousel-slider__image']");
+    private final By CAROUSEL_SLIDER = By.id("welcome-carousel");
     private final By COOKIES_ALLOW_ALL_BUTTON = By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");
 }
