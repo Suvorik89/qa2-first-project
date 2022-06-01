@@ -19,7 +19,7 @@ public class First {
     }
     @Test
     public void usingObjects() {
-        Student mihail = new Student();
+        /*Student mihail = new Student();
         mihail.setFirstName("Mihail");
         mihail.setLastName("The greatest");
         mihail.setAge(18);
@@ -32,6 +32,6 @@ public class First {
         timur.setPersonalCode("543214-12356");
 
         System.out.println(mihail.getFirstName() + " " + mihail.getLastName());
-        System.out.println(timur.getFirstName() + " " + timur.getLastName());
+        System.out.println(timur.getFirstName() + " " + timur.getLastName());*/
     }
 }
