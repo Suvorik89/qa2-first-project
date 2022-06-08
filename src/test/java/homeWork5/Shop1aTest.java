@@ -24,6 +24,7 @@ public class Shop1aTest {
     private final By ITEM_NAME = By.xpath(".//a[@class = 'catalog-taxons-product__name']");
     private final By ITEM_PRICE = By.xpath(".//div[@class = 'product-price-details__block']/span[@class = 'price']");
 
+
     private final String CATEGORY_NAME = "Auto un moto preces";
     private final String SUBCATEGORY_NAME = "Ekipējums moto braukšanai";
     private final String SUB_SUBCATEGORY_NAME = "Moto aksesuāri";
