@@ -13,6 +13,8 @@ public class Helper {
     private final By ARROW_TO_NEXT_MONTH_IN_CALENDAR = By.xpath(".//span[@class='ui-icon ui-icon-circle-triangle-e']");
 
     private BaseFunc baseFunc;
+    private Driver driver;
+
     public Helper(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
     }
@@ -23,7 +25,7 @@ public class Helper {
 
         LocalDate dt = LocalDate.parse(date);
 
-        while (dateFound == false) {
+        while (!dateFound) {
             WebElement month = baseFunc.findElement(NAME_OF_MONTH_IN_CALENDAR);
             List<WebElement> columns = baseFunc.findElements(DAY_IN_CALENDAR);
             String websiteMonthName = month.getText().toUpperCase();
@@ -40,6 +42,10 @@ public class Helper {
                 baseFunc.click(ARROW_TO_NEXT_MONTH_IN_CALENDAR);
             }
         }
+    }
+
+    public void setBirthDay(){
+        driver.getBirthDay().minusYears(35);
     }
 
 

@@ -1,5 +1,7 @@
 package discoverCars.pages;
 
+import discoverCars.Driver;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -7,9 +9,12 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
+import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class BaseFunc {
     private WebDriver driver;
@@ -20,7 +25,7 @@ public class BaseFunc {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     public void openUrl(String url) {
@@ -52,53 +57,40 @@ public class BaseFunc {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
+    public WebElement findElementWithWaitVisibility(By locator) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public List<WebElement> findElements(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElements(locator);
+    }
+
     public void type(By locator, String text) {
         WebElement we = findElement(locator);
         we.clear();
         we.sendKeys(text);
     }
 
-    public void toolTipClick(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        WebElement toolTips = driver.findElement(locator);
-        click(toolTips);
-    }
-
-    public void setDateInCalendar(By calendarLocator, String date, By monthLocator, By dayLocator, By arrowLocator) {
-        boolean dateFound = false;
-        click(calendarLocator);
-
-        LocalDate dt = LocalDate.parse(date);
-        String monthName = String.valueOf(dt.getMonth());
-        String dayNum = String.valueOf(dt.getDayOfMonth());
-
-        while (dateFound == false) {
-            WebElement month = driver.findElement(monthLocator);
-            List<WebElement> columns = driver.findElements(dayLocator);
-            String websiteMonthName = month.getText().toUpperCase();
-
-            if (websiteMonthName.equals(monthName)) {
-                for (WebElement day : columns) {
-                    if (day.getText().equals(dayNum)) {
-                        click(day);
-                        dateFound = true;
-                        break;
-                    }
-                }
-            } else {
-                click(arrowLocator);
+    public void switchingTab(int tabNum){
+        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+        driver.switchTo().window(tabs2.get(tabNum));
+        /*String originalWindow = driver.getWindowHandle();
+        assert driver.getWindowHandles().size() == 1;
+        driver.findElement(By.linkText("new tab")).click();
+        wait.until(numberOfWindowsToBe(tabNum));
+        for (String windowHandle : driver.getWindowHandles()) {
+            if(!originalWindow.contentEquals(windowHandle)) {
+                driver.switchTo().newWindow(WindowType.TAB);
+                //driver.switchTo().window(windowHandle);
+                break;
             }
         }
+        wait.until(titleIs("Selenium documentation"));*/
     }
 
-    public int randomNumber(List<WebElement> options) {
-        Random rand = new Random();
-        return rand.nextInt(options.size());
-    }
-
-    public void dropDownRandomSelect(By locator) {
-        WebElement timeDropdown = driver.findElement(locator);
-        //Select select = new Select (timeDropdown);
-        //select.selectByVisibleText("10:30");
+    public void dropDownSelect(By locator, String findText) {
+        Select select = new Select (driver.findElement(locator));
+        select.selectByVisibleText(findText);
     }
 }
