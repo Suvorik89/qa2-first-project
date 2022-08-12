@@ -4,6 +4,8 @@ import discoverCars.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.time.LocalDate;
+
 public class HomePage {
     private final By ACCEPT_COOKIES_BTN = By.id("onetrust-accept-btn-handler");
     private final By PICK_UP_LOCATION_INPUT_FIELD = By.id("pick-up-location");
@@ -31,7 +33,7 @@ public class HomePage {
         baseFunc.click(toolTips);
     }
 
-    public void clickGivenDate(String pickUpDate, String dropOffDate) {
+    public void clickGivenDate(LocalDate pickUpDate, LocalDate dropOffDate) {
         Helper helper = new Helper(baseFunc);
         helper.setDateInCalendar(PICK_UP_CALENDAR, pickUpDate);
         helper.setDateInCalendar(DROP_OFF_CALENDAR, dropOffDate);

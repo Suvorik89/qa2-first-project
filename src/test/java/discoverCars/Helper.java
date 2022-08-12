@@ -13,26 +13,22 @@ public class Helper {
     private final By ARROW_TO_NEXT_MONTH_IN_CALENDAR = By.xpath(".//span[@class='ui-icon ui-icon-circle-triangle-e']");
 
     private BaseFunc baseFunc;
-    private Driver driver;
 
     public Helper(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
     }
 
-    public void setDateInCalendar(By calendarLocator, String date) {
+    public void setDateInCalendar(By calendarLocator, LocalDate date) {
         boolean dateFound = false;
         baseFunc.click(calendarLocator);
-
-        LocalDate dt = LocalDate.parse(date);
-
         while (!dateFound) {
             WebElement month = baseFunc.findElement(NAME_OF_MONTH_IN_CALENDAR);
             List<WebElement> columns = baseFunc.findElements(DAY_IN_CALENDAR);
             String websiteMonthName = month.getText().toUpperCase();
 
-            if (websiteMonthName.equals(dt.getMonth().name())) {
+            if (websiteMonthName.equals(date.getMonth().name())) {
                 for (WebElement day : columns) {
-                    if (Integer.parseInt(day.getText()) == dt.getDayOfMonth()) {
+                    if (Integer.parseInt(day.getText()) == date.getDayOfMonth()) {
                         baseFunc.click(day);
                         dateFound = true;
                         break;
@@ -43,10 +39,4 @@ public class Helper {
             }
         }
     }
-
-    public void setBirthDay(){
-        driver.getBirthDay().minusYears(35);
-    }
-
-
 }

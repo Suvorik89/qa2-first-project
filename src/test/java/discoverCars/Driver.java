@@ -13,9 +13,6 @@ public class Driver {
     private String phoneNumber;
     private LocalDate birthDay;
 
-    public Driver() {
-    }
-
     public Driver(String title, String firstName, String lastName, String email, String countyCode, String phoneNumber,
                   LocalDate birthDay) {
 

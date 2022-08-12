@@ -1,7 +1,5 @@
 package discoverCars.pages;
 
-import discoverCars.Driver;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,10 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class BaseFunc {
     private WebDriver driver;
@@ -72,8 +66,8 @@ public class BaseFunc {
         we.sendKeys(text);
     }
 
-    public void switchingTab(int tabNum){
-        ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+    public void switchingTab(int tabNum) {
+        ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(tabNum));
         /*String originalWindow = driver.getWindowHandle();
         assert driver.getWindowHandles().size() == 1;
@@ -90,7 +84,7 @@ public class BaseFunc {
     }
 
     public void dropDownSelect(By locator, String findText) {
-        Select select = new Select (driver.findElement(locator));
+        Select select = new Select(driver.findElement(locator));
         select.selectByVisibleText(findText);
     }
 }
