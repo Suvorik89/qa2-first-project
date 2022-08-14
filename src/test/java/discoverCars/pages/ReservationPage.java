@@ -39,11 +39,11 @@ public class ReservationPage {
         baseFunc.type(PHONE_COUNTRY_CODE_INPUT, driver.getCountyCode());
         baseFunc.type(PHONE_INPUT, driver.getPhoneNumber());
 
+        baseFunc.dropDownSelect(DAY_BIRTH_DROPDOWN, String.valueOf(driver.getBirthDay().getDayOfMonth()));
+        baseFunc.dropDownSelect(MONTH_BIRTH_DROPDOWN, driver.getBirthDay().getMonth().getDisplayName(TextStyle.SHORT, Locale.US));
         LocalDate year = driver.getBirthDay().minusYears(AGE);
         baseFunc.dropDownSelect(YEAR_BIRTH_DROPDOWN, String.valueOf(year.getYear()));
         LOGGER.info("Driver's year of birth is " + String.valueOf(year.getYear()) + " (age " + AGE + " years)");
-        baseFunc.dropDownSelect(MONTH_BIRTH_DROPDOWN, driver.getBirthDay().getMonth().getDisplayName(TextStyle.SHORT, Locale.US));
-        baseFunc.dropDownSelect(DAY_BIRTH_DROPDOWN, String.valueOf(driver.getBirthDay().getDayOfMonth()));
 
         baseFunc.click(BOOK_NOW_BUTTON);
         LOGGER.info("Opening pay page");
