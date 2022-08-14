@@ -12,13 +12,13 @@ import java.util.List;
 public class HomePage {
     private final By ACCEPT_COOKIES_BTN = By.id("onetrust-accept-btn-handler");
     private final By PICK_UP_LOCATION_INPUT_FIELD = By.id("pick-up-location");
-    private final By TOOL_TIPS_SEARCH_FIELD = By.xpath(".//div[@class = 'location-item airport tt-suggestion tt-selectable']");
+    private final By TOOL_TIP_ITEMS = By.xpath(".//div[contains(@class, 'location-item')]");
 
     private final By PICK_UP_CALENDAR = By.id("pick-date-ui");
     private final By DROP_OFF_CALENDAR = By.id("drop-date-ui");
 
     private final By SEARCH_BUTTON = By.xpath(".//button[@id='location-submit']");
-    private final By TOOL_TIP_ITEMS = By.xpath(".//div[contains(@class, 'location-item')]");
+
     private final Logger LOGGER = LogManager.getLogger(HomePage.class);
     private BaseFunc baseFunc;
 
@@ -32,16 +32,12 @@ public class HomePage {
 
     public void searchFor(String textToFind) {
         baseFunc.type(PICK_UP_LOCATION_INPUT_FIELD, textToFind);
-        //WebElement toolTips = baseFunc.findElementWithWaitVisibility(TOOL_TIPS_SEARCH_FIELD);
-        //baseFunc.click(toolTips);
         List<WebElement> toolTips = baseFunc.findElementsWithWaitVisibility(TOOL_TIP_ITEMS);
         for (WebElement we : toolTips) {
-            if (we.getText().contains(textToFind)){
+            if (we.getText().contains(textToFind)) {
                 baseFunc.click(we);
             }
         }
-
-
     }
 
     public void clickGivenDate(LocalDate pickUpDate, LocalDate dropOffDate) {

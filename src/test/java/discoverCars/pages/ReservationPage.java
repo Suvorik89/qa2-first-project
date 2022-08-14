@@ -20,6 +20,7 @@ public class ReservationPage {
     private final By MONTH_BIRTH_DROPDOWN = By.id("driver_birth_dt_month");
     private final By DAY_BIRTH_DROPDOWN = By.id("driver_birth_dt_day");
     private final By BOOK_NOW_BUTTON = By.id("createReservation");
+
     private final Logger LOGGER = LogManager.getLogger(ReservationPage.class);
     private final int AGE = 35;
 

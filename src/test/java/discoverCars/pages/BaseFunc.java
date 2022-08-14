@@ -51,10 +51,6 @@ public class BaseFunc {
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public WebElement findElementWithWaitVisibility(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
     public List<WebElement> findElements(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElements(locator);

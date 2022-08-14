@@ -15,9 +15,10 @@ import java.util.List;
 
 public class BookingTests {
     private final String HOME_PAGE_URL = "http://www.discovercars.com/";
-    private final LocalDate PICK_UP_DATE = LocalDate.parse("2023-01-02");
-    private final LocalDate DROP_OFF_DATE = LocalDate.parse("2023-01-06");
+    private final LocalDate PICK_UP_DATE = LocalDate.parse("2022-09-30");
+    private final LocalDate DROP_OFF_DATE = LocalDate.parse("2022-10-06");
     private final String LOCATION_NAME = "Lisbon Airport (LIS)";
+
     private final Logger LOGGER = LogManager.getLogger(BookingTests.class);
 
     @Test
