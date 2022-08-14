@@ -4,6 +4,8 @@ import discoverCars.pages.BaseFunc;
 import discoverCars.pages.ReservationPage;
 import discoverCars.pages.HomePage;
 import discoverCars.pages.CarsPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
@@ -13,9 +15,10 @@ import java.util.List;
 
 public class BookingTests {
     private final String HOME_PAGE_URL = "http://www.discovercars.com/";
-    private final LocalDate PICK_UP_DATE = LocalDate.parse("2022-09-30");
-    private final LocalDate DROP_OFF_DATE = LocalDate.parse("2022-11-15");
+    private final LocalDate PICK_UP_DATE = LocalDate.parse("2023-01-02");
+    private final LocalDate DROP_OFF_DATE = LocalDate.parse("2023-01-06");
     private final String LOCATION_NAME = "Lisbon Airport (LIS)";
+    private final Logger LOGGER = LogManager.getLogger(BookingTests.class);
 
     @Test
     public void bookingDetailsCheck() {
@@ -34,6 +37,7 @@ public class BookingTests {
         CarsPage searchPage = new CarsPage(baseFunc);
         List<WebElement> carsCards = searchPage.carsCountCheck();
         Assertions.assertFalse(carsCards.isEmpty(), "Is empty");
+        LOGGER.info("Found " + (carsCards.size() - 1) + " cars");
 
         baseFunc.switchingTab(1);
         ReservationPage driverPage = new ReservationPage(baseFunc);

@@ -1,10 +1,13 @@
 package discoverCars.pages;
 
 import discoverCars.Helper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class HomePage {
     private final By ACCEPT_COOKIES_BTN = By.id("onetrust-accept-btn-handler");
@@ -15,8 +18,8 @@ public class HomePage {
     private final By DROP_OFF_CALENDAR = By.id("drop-date-ui");
 
     private final By SEARCH_BUTTON = By.xpath(".//button[@id='location-submit']");
-    //private final By TOOL_TIP_ITEMS = By.xpath(".//div[contains(@class, 'location-item')]");
-
+    private final By TOOL_TIP_ITEMS = By.xpath(".//div[contains(@class, 'location-item')]");
+    private final Logger LOGGER = LogManager.getLogger(HomePage.class);
     private BaseFunc baseFunc;
 
     public HomePage(BaseFunc baseFunc) {
@@ -29,8 +32,16 @@ public class HomePage {
 
     public void searchFor(String textToFind) {
         baseFunc.type(PICK_UP_LOCATION_INPUT_FIELD, textToFind);
-        WebElement toolTips = baseFunc.findElementWithWaitVisibility(TOOL_TIPS_SEARCH_FIELD);
-        baseFunc.click(toolTips);
+        //WebElement toolTips = baseFunc.findElementWithWaitVisibility(TOOL_TIPS_SEARCH_FIELD);
+        //baseFunc.click(toolTips);
+        List<WebElement> toolTips = baseFunc.findElementsWithWaitVisibility(TOOL_TIP_ITEMS);
+        for (WebElement we : toolTips) {
+            if (we.getText().contains(textToFind)){
+                baseFunc.click(we);
+            }
+        }
+
+
     }
 
     public void clickGivenDate(LocalDate pickUpDate, LocalDate dropOffDate) {
@@ -41,6 +52,7 @@ public class HomePage {
 
     public void clickOnSearchButton() {
         baseFunc.click(SEARCH_BUTTON);
+        LOGGER.info("The search for cars has begun...");
     }
 }
 

@@ -60,6 +60,11 @@ public class BaseFunc {
         return driver.findElements(locator);
     }
 
+    public List<WebElement> findElementsWithWaitVisibility(By locator) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return driver.findElements(locator);
+    }
+
     public void type(By locator, String text) {
         WebElement we = findElement(locator);
         we.clear();
@@ -69,18 +74,6 @@ public class BaseFunc {
     public void switchingTab(int tabNum) {
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(tabNum));
-        /*String originalWindow = driver.getWindowHandle();
-        assert driver.getWindowHandles().size() == 1;
-        driver.findElement(By.linkText("new tab")).click();
-        wait.until(numberOfWindowsToBe(tabNum));
-        for (String windowHandle : driver.getWindowHandles()) {
-            if(!originalWindow.contentEquals(windowHandle)) {
-                driver.switchTo().newWindow(WindowType.TAB);
-                //driver.switchTo().window(windowHandle);
-                break;
-            }
-        }
-        wait.until(titleIs("Selenium documentation"));*/
     }
 
     public void dropDownSelect(By locator, String findText) {
