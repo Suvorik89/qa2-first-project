@@ -1,17 +1,38 @@
 package model.reservation;
 
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.cucumber.core.internal.com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.RandomStringUtils;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Reservation {
+    @JsonProperty("name")
     private String firstName;
+
+    @JsonProperty("surname")
     private String lastName;
+
     private String discount;
+
+    @JsonProperty("flight")
     private String flightDate;
+
+    @JsonProperty("afrom")
     private String departureAirport;
+
+    @JsonProperty("ato")
     private String arrivalAirport;
+
+    @JsonProperty("seat")
     private int seatNumber;
+
+    @JsonProperty("adults")
     private int adultsCount;
+
+    @JsonProperty("children")
     private int childCount;
+
+    @JsonProperty("bugs")
     private int bagsCount;
 
     public Reservation() {
@@ -30,10 +51,8 @@ public class Reservation {
         //short IF
         this.firstName = firstName.equals("random") ? RandomStringUtils.randomAlphabetic(3, 10) : firstName;
         this.lastName = lastName.equals("random") ? RandomStringUtils.randomAlphabetic(3,10) : lastName;
-        //this.discount = discount.
+        this.discount = discount.equals("random") ? RandomStringUtils.randomAlphabetic(3,10) : discount;
 
-
-        this.discount = discount;
         this.flightDate = flightDate;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
