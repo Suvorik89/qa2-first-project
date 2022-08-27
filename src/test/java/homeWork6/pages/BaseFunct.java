@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -41,6 +42,11 @@ public class BaseFunct {
             we.click();
         }
     }
+
+    public void click (WebElement we) {
+        wait.until(ExpectedConditions.elementToBeClickable(we)).click();
+    }
+
 
     public int randomNumber(List <WebElement> options) {
         Random rand = new Random();
@@ -103,6 +109,12 @@ public class BaseFunct {
         return Integer.parseInt(numberOnly);
     }
 
+    public String getDigitFromStr(By locator) {
+        WebElement we = findElement(locator);
+        String numberOnly = we.getText().replaceAll("[^0-9]", "");
+        return numberOnly;
+    }
+
     public TestValues seatReservation(By locator) {
         List<WebElement> seatsNumbers = driver.findElements(locator);
         TestValues seatNum = new TestValues();
@@ -111,5 +123,24 @@ public class BaseFunct {
         seatsNumbers.get(randomItem).click();
         return seatNum;
     }
+
+
+    public void select(By locator, String text){
+        Select select = new Select(findElement(locator));
+        select.selectByVisibleText(text);
+    }
+
+    public List<WebElement> findElements(By locator){
+        return driver.findElements(locator);
+    }
+
+    public void type(By locator, int text){
+        type(locator, String.valueOf(text));
+    }
+
+    public void waitForElementCountAtLeast(By locator, int minCount) {
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(locator, minCount));
+    }
+
 }
 
