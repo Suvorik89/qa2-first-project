@@ -2,11 +2,11 @@ Feature: Ticket reservation
 
   Scenario: Successful ticket reservation
     Given random client with:
-      | discount    | CCCCCC     |
-      | flight_date | 13-05-2018 |
-
-    And client is flying from "MEL" to "JFC"
-    And seat number is 21
+      | discount     | CCCCCC     |
+      | flight_date  | 13-05-2018 |
+      | airport_from | MEL        |
+      | airport_to   | JFC        |
+      | seat_number  | 21         |
 
     And home page ie opened
 
@@ -17,7 +17,7 @@ Feature: Ticket reservation
     And we are clicking on Get price link
 
     Then passenger name appears
-    And price is shown
+    And price is: 930 EUR
 
     When we are pressing Book button
     And selecting seat number

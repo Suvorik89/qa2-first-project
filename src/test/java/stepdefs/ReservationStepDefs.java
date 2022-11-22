@@ -102,8 +102,7 @@ public class ReservationStepDefs {
 
     @Then("successful booking page appears")
     public void check_booking_page() {
-        String finalText = "Thank You for flying with us!";
-        assertEquals(finalText, finalPage.getFinalText(), "No successful booking page appears!");
+        assertTrue(finalPage.IsReservationSuccessful(), "Reservation isn't succesful!");
     }
 
     @When("we are requesting all reservations via API")
