@@ -44,3 +44,4 @@ public class SeatReservePage {
         baseFunct.click(BOOK_BUTTON);
     }
 }
+
